@@ -1,0 +1,9 @@
+FROM mcr.microsoft.com/dotnet/framework/sdk:4.8
+
+SHELL ["powershell", "-NoLogo", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+ADD build/bin/Release/fluent-bit.* /Windows/
+
+RUN Invoke-WebRequest -OutFile vc_redist.x64.exe https://aka.ms/vs/15/release/vc_redist.x64.exe; Start-Process vc_redist.x64.exe -ArgumentList '/install /passive /norestart' -Wait; Remove-Item -Force vc_redist.x64.exe
+
+CMD ["fluent-bit","-i","dummy","-o","stdout"]
