@@ -1,7 +1,8 @@
 # escape=`
 
 # BUILD
-FROM mcr.microsoft.com/dotnet/framework/sdk:4.8 AS build
+ARG BASE_IMAGE=mcr.microsoft.com/windows/servercore:ltsc2019
+FROM $BASE_IMAGE as builder
 
 # Restore the default Windows shell for correct batch processing.
 SHELL ["cmd", "/S", "/C"]
@@ -56,7 +57,7 @@ FROM mcr.microsoft.com/dotnet/framework/sdk:4.8
 
 SHELL ["powershell", "-NoLogo", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-COPY --from=build `
+COPY --from=builder `
     /src/build/bin/Release/fluent-bit.exe `
     /src/build/bin/Release/fluent-bit.dll `
     /Windows/
