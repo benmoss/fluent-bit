@@ -53,7 +53,7 @@ RUN powershell -Command cmake -G "$ENV:msvc" -DCMAKE_BUILD_TYPE="$ENV:configurat
 RUN powershell -Command cmake --build . --config "$ENV:configuration"
 
 # RUN
-FROM mcr.microsoft.com/dotnet/framework/sdk:4.8
+FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
 SHELL ["powershell", "-NoLogo", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
