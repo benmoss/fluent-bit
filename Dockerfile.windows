@@ -15,7 +15,7 @@ ADD https://aka.ms/vs/16/release/channel C:\Temp\VisualStudio.chman
 
 # For help on command-line syntax:
 # https://docs.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio
-# Install MSVC C++ compiler, CMake, and MSBuild.
+# Install MSVC C++ compiler and CMake.
 RUN C:\Temp\vs_buildtools.exe `
     --quiet --wait --norestart --nocache `
     --installPath C:\BuildTools `
