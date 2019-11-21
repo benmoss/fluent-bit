@@ -20,7 +20,7 @@ before_build:
   - cmd: if "%platform%"=="x64"   set msvc=Visual Studio 15 2017 Win64
 
 build_script:
-  - docker build -t benmoss/fluent-bit --file Dockerfile.windows
+  - docker build . -t benmoss/fluent-bit --file Dockerfile.windows
 
 artifacts:
   - path: build/td-agent-bit-*.exe
